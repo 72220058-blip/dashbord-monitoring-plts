@@ -1,52 +1,61 @@
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
   background: #0f172a;
-  color: #fff;
-  text-align: center;
+  color: white;
 }
 
 .container {
   max-width: 400px;
-  margin: auto;
+  margin: 40px auto;
   padding: 20px;
+  text-align: center;
 }
 
-.card {
-  background: #1e293b;
-  border-radius: 15px;
-  padding: 20px;
+h2 {
   margin-bottom: 20px;
 }
 
+.mqtt {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #38bdf8;
+}
+
 .status {
-  font-size: 20px;
-  margin: 10px 0;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
 }
 
 .pln {
-  color: #f87171;
+  background: #7f1d1d;
+  color: #fecaca;
 }
 
 .plts {
-  color: #4ade80;
+  background: #14532d;
+  color: #bbf7d0;
 }
 
 button {
   width: 100%;
   padding: 15px;
-  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 18px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-}
-
-.btn-pln {
-  background: #ef4444;
-  color: white;
 }
 
 .btn-plts {
   background: #22c55e;
+  color: black;
+}
+
+.btn-pln {
+  background: #ef4444;
   color: white;
 }
