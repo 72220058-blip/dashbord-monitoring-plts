@@ -1,18 +1,22 @@
-let client;
+document.addEventListener("DOMContentLoaded", function () {
 
-window.onload = () => {
+  if (typeof Paho === "undefined") {
+    document.getElementById("mqtt").innerText = "MQTT Library Error";
+    console.error("Paho MQTT tidak terbaca");
+    return;
+  }
 
-  client = new Paho.MQTT.Client(
+  const client = new Paho.MQTT.Client(
     "broker.hivemq.com",
     8884,
     "dashboard-" + Math.random()
   );
 
-  client.onConnectionLost = () => {
+  client.onConnectionLost = function () {
     document.getElementById("mqtt").innerText = "MQTT Disconnected";
   };
 
-  client.onMessageArrived = (message) => {
+  client.onMessageArrived = function (message) {
     if (message.destinationName === "monitor/relay") {
       const status = message.payloadString;
       const el = document.getElementById("status");
@@ -29,24 +33,21 @@ window.onload = () => {
 
   client.connect({
     useSSL: true,
-    onSuccess: () => {
+    onSuccess: function () {
       document.getElementById("mqtt").innerText = "MQTT Connected";
       client.subscribe("monitor/relay");
     },
-    onFailure: () => {
+    onFailure: function () {
       document.getElementById("mqtt").innerText = "MQTT Failed";
     }
   });
-};
 
-function relayON() {
-  if (client && client.isConnected()) {
+  window.relayON = function () {
     client.send("kontrol/relay", "ON");
-  }
-}
+  };
 
-function relayOFF() {
-  if (client && client.isConnected()) {
+  window.relayOFF = function () {
     client.send("kontrol/relay", "OFF");
-  }
-}
+  };
+
+});
