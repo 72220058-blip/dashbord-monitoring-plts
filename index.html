@@ -1,41 +1,26 @@
-const client = new Paho.MQTT.Client(
-  "broker.hivemq.com",
-  8884,
-  "dashboard-" + Math.random()
-);
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard PLN - PLTS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-client.onConnectionLost = () => {
-  document.getElementById("mqtt").innerText = "MQTT Disconnected";
-};
+  <div class="container">
+    <h2>Monitoring PLN - PLTS</h2>
 
-client.onMessageArrived = (message) => {
-  if (message.destinationName === "monitor/relay") {
-    const status = message.payloadString;
-    const el = document.getElementById("status");
+    <div id="mqtt" class="mqtt">MQTT Disconnected</div>
 
-    if (status === "ON") {
-      el.innerHTML = "PLTS ON";
-      el.className = "status plts";
-    } else {
-      el.innerHTML = "PLN ON";
-      el.className = "status pln";
-    }
-  }
-};
+    <div id="status" class="status pln">PLN ON</div>
 
-client.connect({
-  useSSL: true,
-  onSuccess: () => {
-    document.getElementById("mqtt").innerText = "MQTT Connected";
-    client.subscribe("monitor/relay");
-  }
-});
+    <button class="btn-plts" onclick="relayON()">PLTS</button>
+    <button class="btn-pln" onclick="relayOFF()">PLN</button>
+  </div>
 
-function relayON() {
-  client.send("kontrol/relay", "ON");
-}
-
-function relayOFF() {
-  client.send("kontrol/relay", "OFF");
-
-}
+  <!-- MQTT LIBRARY -->
+  <script src="https://unpkg.com/paho-mqtt/mqttws31.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
