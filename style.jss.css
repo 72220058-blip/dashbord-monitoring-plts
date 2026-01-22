@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #fff;
+  text-align: center;
+}
+
+.container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: #1e293b;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.status {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.pln {
+  color: #f87171;
+}
+
+.plts {
+  color: #4ade80;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-pln {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-plts {
+  background: #22c55e;
+  color: white;
+}
